@@ -1,0 +1,8 @@
+<litepal>
+    <databasename value = "Zenith_Weather"/>
+    <version value  = "1"/>
+    <list>
+        <mapping class  = "com.zenithweather.android.database.Province"/>
+        <mapping class= "com.zenithweather.android.database.City"/>
+        <mapping class= "com.zenithweather.android.database.Country"/>
+</litepal>
