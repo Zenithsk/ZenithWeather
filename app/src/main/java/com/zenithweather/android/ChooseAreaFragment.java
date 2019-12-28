@@ -32,7 +32,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 import okhttp3.internal.Util;
 
-public class Choose_AreaFragment extends Fragment {
+public class ChooseAreaFragment extends Fragment {
     public static final int LEVEL_PROVINCE = 0;
     public static final int LEVEL_CITY = 1 ;
     public static final int LEVEL_COUNTRY = 2;
@@ -76,7 +76,7 @@ public class Choose_AreaFragment extends Fragment {
                     queryCities();
                 }else if(currentLevel == LEVEL_CITY){
                     selectedCity = cityList.get(position);
-                    queryCounties();
+                    queryCountries();
                 }
             }
         });
@@ -118,8 +118,8 @@ public class Choose_AreaFragment extends Fragment {
     private void queryCities(){
         titleText.setText(selectedProvince.getProvinceName());
         backButton.setVisibility(View.VISIBLE);
-        cityList = DataSupport.where("province id = ? ",String.valueOf(selectedProvince.getId())).find(City.class);
-        if(cityList.size()>0){
+        cityList = DataSupport.where("provinceid = ? ",String.valueOf(selectedProvince.getId())).find(City.class);
+        if(cityList.size() > 0){
             dataList.clear();
             for(City city : cityList){
                 dataList.add(city.getCityName());
@@ -136,11 +136,11 @@ public class Choose_AreaFragment extends Fragment {
     /*
     查询选中市内所有的县，优先从数据库查询，如果没有查询到再去服务器上查询。
      */
-    private void queryCounties(){
+    private void queryCountries(){
         titleText.setText(selectedCity.getCityName());
         backButton.setVisibility(View.VISIBLE);
-        countryList = DataSupport.where("city id = ? ",String.valueOf(selectedCity.getId())).find(Country.class);
-        if(countryList.size()>0){
+        countryList = DataSupport.where("cityid = ? ",String.valueOf(selectedCity.getId())).find(Country.class);
+        if(countryList.size() > 0){
             dataList.clear();
             for (Country country : countryList){
                 dataList.add(country.getCountryName());
@@ -179,7 +179,7 @@ public class Choose_AreaFragment extends Fragment {
                             } else if ("city".equals(type)) {
                                 queryCities();
                             } else if ("country".equals(type)) {
-                                queryCounties();
+                                queryCountries();
                             }
                         }
                     });

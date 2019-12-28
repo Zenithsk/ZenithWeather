@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 26
     defaultConfig {
         applicationId "com.zenithweather.android"
         minSdkVersion 25
@@ -13,6 +13,8 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            aaptOptions.cruncherEnabled = false
+            aaptOptions.useNewCruncher = false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -23,9 +25,10 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.+'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
-    compile 'org.litepal.android:core:1.4.1' //对依赖库进行声明，litepal用于对数据库进行操作。
-    compile 'com.squareup.okhttp3:okhttp:3.4.1' // okhttp依赖库用于进行网络请求。
-    compile 'com.github.bumptech.glide:glide:3.7.0' //GSON依赖库用于解析JSON数据
+    implementation 'org.litepal.android:core:1.4.1' //对依赖库进行声明，litepal用于对数据库进行操作。
+    implementation 'com.squareup.okhttp3:okhttp:3.4.1' // okhttp依赖库用于进行网络请求。
+    implementation 'com.google.code.gson:gson:2.7'
+    implementation 'com.github.bumptech.glide:glide:3.7.0' //GSON依赖库用于解析JSON数据
     androidTestImplementation 'com.android.support.test:runner:1.0.2' //GLIDE依赖库用于加载和提示图片
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
